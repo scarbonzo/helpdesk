@@ -1,3 +1,4 @@
+import { HelpdeskService } from './../helpdesk.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tickets.component.scss']
 })
 export class TicketsComponent implements OnInit {
+  tickets: [];
 
-  constructor() { }
+  constructor(private _hdaService: HelpdeskService) {}
 
   ngOnInit() {
+    this.getTickets();
   }
 
+  getTickets() {
+    this._hdaService
+      .getOpenTickets()
+      .subscribe(resEventsData => (this.tickets = resEventsData));
+  }
 }

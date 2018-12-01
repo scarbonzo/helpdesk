@@ -1,3 +1,81 @@
-<p>
-  tickets works!
-</p>
+<div class="container" id="accordion" class="pagecontent">
+  
+  <div class="card">
+    <div class="card-header" style="color: orange; text-align: center; padding-left: 15px;">
+      <div class="row">
+        <div class="col-sm-1">Priority</div>
+        <div class="col-sm-2">End User</div>
+        <div class="col-sm-1">Office</div>
+        <div class="col-sm-2">Issue Type</div>
+        <div class="col-sm-6">Summary</div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngFor="let t of tickets" class="card">
+    <div class="card-header" id="heading{{t.id}}">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" attr.data-target="#collapse{{t.id}}" aria-expanded="false" attr.aria-controls="collapse{{t.id}}">
+          <div class="row">
+            <div class="col-sm-1">{{ t.priority.ipPriorityName }}</div>
+            <div class="col-sm-2">{{ t.endUser.cmFullName }}</div>
+            <div class="col-sm-1">{{ t.office.lcLocationName }}</div>
+            <div class="col-sm-2" style="text-align: justify;">{{ t.issueType.istyIssueTypeName }}</div>
+            <div class="col-sm-6 summary" style="text-align: justify;">{{ t.summary }}</div>
+          </div>
+        </button>
+      </h5>
+    </div>
+    <div id="collapse{{t.id}}" class="collapse" attr.aria-labelledby="heading{{t.id}}" data-parent="#accordion">
+      <div class="card-body details">
+        <div class="row">
+          <div class="col-sm-1">Ticket #</div>
+          <div class="col-sm-2 yellow">{{t.id}}</div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1">Program:</div>
+          <div class="col-sm-2 yellow">{{ t.program.coCompanyName }}</div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1">Created:</div>
+          <div class="col-sm-3 yellow">{{ t.created | date: 'short' }} ({{t.createdBy.usLogonName}})</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-1">Priority:</div>
+          <div class="col-sm-2 yellow">{{ t.priority.ipPriorityName }}</div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1">Office:</div>
+          <div class="col-sm-2 yellow">{{ t.office.lcLocationName }}</div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1">Updated:</div>
+          <div class="col-sm-3 yellow">{{ t.updated | date: 'short' }} ({{t.updatedBy.usLogonName}})</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-1">Type:</div>
+          <div class="col-sm-2 yellow">{{ t.issueType.istyIssueTypeName }}</div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1">User:</div>
+          <div class="col-sm-2 yellow">{{ t.endUser.cmFullName }}</div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1">Due Date:</div>
+          <div class="col-sm-3 yellow">{{ t.dueDate | date: 'short' }}</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-1">Status:</div>
+          <div class="col-sm-2 yellow"><span *ngIf="t.subStatus != null">{{ t.subStatus.istName }}</span></div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1">Assigned:</div>
+          <div class="col-sm-2 yellow">{{ t.assignedTo.usFullName }}</div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-3 yellow"></div>
+        </div>
+        <div class="row" style="padding-left: 15px;">Notes:</div>
+        <div class="row">
+          <ul *ngFor="let n of t.notes">
+            <li *ngIf="n.itxIssueText != ''" class="yellow">{{ n.itxIssueText }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

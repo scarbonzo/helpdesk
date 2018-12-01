@@ -23,8 +23,8 @@ import { ReportsComponent } from './reports/reports.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [HelpdeskService],
