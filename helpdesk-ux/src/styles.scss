@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+.navbar {
+    min-height: 63px;
+  }
+  
+  .navbar a {
+    color: white;
+  }
+  
+  .helpbutton {
+    margin-right: 15px;
+  }
+  
+  .nav-pills > li.active > a,
+  .nav-pills > li.active > a:focus,
+  .nav-pills > li.active > a:hover {
+    background-color: red;
+    color: white;
+  }
+  
+  .navbar ul {
+    padding-top: 5px;
+  }
+  
+  .navbar-lsnj {
+    background-color: #01579b;
+  }
+  
+  body {
+    background-color: darkgray;
+    padding-top: 70px;
+  }
+  
+  table tbody tr {
+    border: none;
+  }
+  
